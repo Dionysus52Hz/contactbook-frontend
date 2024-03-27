@@ -33,7 +33,7 @@
    import ContactForm from '../components/ContactForm.vue';
    import ContactService from '../services/contactService';
    import { ref, onBeforeMount } from 'vue';
-   import { useRouter } from 'vue-router';
+   import { useRouter, useRoute } from 'vue-router';
    import { mdiClose } from '@mdi/js';
 
    const props = defineProps({
@@ -44,11 +44,21 @@
    const message = ref('');
    const notification = ref(false);
 
+   const router = useRouter();
+   const route = useRoute();
    const getContact = async (id) => {
       try {
          contact.value = await ContactService.get(id);
       } catch (error) {
          console.log(error);
+         router.push({
+            name: 'notFoundPage',
+            params: {
+               pathMatch: route.path.split('/').slice(1),
+            },
+            query: route.query,
+            hash: route.hash,
+         });
       }
    };
 
@@ -62,7 +72,6 @@
       }
    };
 
-   const router = useRouter();
    const deleteContact = async () => {
       if (confirm('Bạn muốn xoá liên hệ này?')) {
          try {

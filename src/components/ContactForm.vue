@@ -149,10 +149,6 @@
       margin: 0 auto;
    }
 
-   .v-card-item__content {
-      background-color: red;
-   }
-
    .v-form .v-text-field:not(:first-child) {
       margin-top: 12px;
    }

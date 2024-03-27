@@ -74,10 +74,6 @@
 </script>
 
 <style scoped>
-   .v-list-item__content {
-      display: flex;
-   }
-
    .v-btn {
       height: 36px;
       font-weight: 700;
